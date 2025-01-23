@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        header {
+            background-color: #1e1e1e;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(10, 1fr);
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .photo {
+            border: 2px solid #333;
+            overflow: hidden;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding-bottom: 66.66%; /* Maintain aspect ratio */
+            height: 0;
+        }
+
+        .photo img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 15px;
+        }
+
+        .photo img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            border-radius: 15px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .nav {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .nav button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BOONY Photography Portfolio</h1>
+    </header>
+    <section class="gallery">
+        <div class="photo" onclick="openModal('img/photo1.jpg')">
+            <img src="uploads/1.jpg" alt="Photo 1">
+        </div>
+        <div class="photo" onclick="openModal('img/photo2.jpg')">
+            <img src="uploads/10.jpg" alt="Photo 2">
+        </div>
+        <div class="photo" onclick="openModal('img/photo3.jpg')">
+            <img src="uploads/19.jpg" alt="Photo 3">
+        </div>
+        <div class="photo" onclick="openModal('uploads/port/419736989_852669983538430_8689377821980873050_n.jpg')">
+          <img src="uploads/port/419736989_852669983538430_8689377821980873050_n.jpg" alt="Image 1" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/436300388_884843863654375_1408811771875856056_n.jpg')">
+          <img src="uploads/port/436300388_884843863654375_1408811771875856056_n.jpg" alt="Image 2" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/441958842_889651136506981_5920699916165511002_n.jpg')">
+          <img src="uploads/port/441958842_889651136506981_5920699916165511002_n.jpg" alt="Image 3" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/448950084_910194734452621_6565037790941088887_n.jpg')">
+          <img src="uploads/port/448950084_910194734452621_6565037790941088887_n.jpg" alt="Image 4" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/424860318_852586790213416_3086428291905214241_n.jpg')">
+          <img src="uploads/port/424860318_852586790213416_3086428291905214241_n.jpg" alt="Image 5" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/441197445_884843780321050_3630138417296394801_n.jpg')">
+          <img src="uploads/port/441197445_884843780321050_3630138417296394801_n.jpg" alt="Image 6" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/418981908_850301760441919_8199620442489643009_n.jpg')">
+          <img src="uploads/port/418981908_850301760441919_8199620442489643009_n.jpg" alt="Image 7" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/450550392_923703433101751_4196755156817496246_n.jpg')">
+          <img src="uploads/port/450550392_923703433101751_4196755156817496246_n.jpg" alt="Image 8" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/420233240_852671553538273_808437125339655095_n.jpg')">
+          <img src="uploads/port/420233240_852671553538273_808437125339655095_n.jpg" alt="Image 9" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/418986831_852587036880058_8705871273010593305_n.jpg')">
+          <img src="uploads/port/418986831_852587036880058_8705871273010593305_n.jpg" alt="Image 10" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/441963651_891551899650238_5325626000319308485_n.jpg')">
+          <img src="uploads/port/441963651_891551899650238_5325626000319308485_n.jpg" alt="Image 11" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/419743015_852587123546716_8842136500202467771_n.jpg')">
+          <img src="uploads/port/419743015_852587123546716_8842136500202467771_n.jpg" alt="Image 12" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/450458048_922989013173193_2944533114325457177_n.jpg')">
+          <img src="uploads/port/450458048_922989013173193_2944533114325457177_n.jpg" alt="Image 13" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/448891884_910194714452623_2827242982687188198_n.jpg')">
+          <img src="uploads/port/448891884_910194714452623_2827242982687188198_n.jpg" alt="Image 14" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/420201888_850301820441913_7957788413658432208_n.jpg')">
+          <img src="uploads/port/420201888_850301820441913_7957788413658432208_n.jpg" alt="Image 15" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/441970120_891552279650200_7370273082408378138_n.jpg')">
+          <img src="uploads/port/441970120_891552279650200_7370273082408378138_n.jpg" alt="Image 16" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/417459507_905425988262829_7166318837186092505_n.jpg')">
+          <img src="uploads/port/417459507_905425988262829_7166318837186092505_n.jpg" alt="Image 17" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/420398838_852670020205093_8546056783674331745_n.jpg')">
+          <img src="uploads/port/420398838_852670020205093_8546056783674331745_n.jpg" alt="Image 18" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/419491189_852587173546711_2310775888058213430_n.jpg')">
+          <img src="uploads/port/419491189_852587173546711_2310775888058213430_n.jpg" alt="Image 19" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/451286616_926767646128663_1150939364564640994_n.jpg')">
+          <img src="uploads/port/451286616_926767646128663_1150939364564640994_n.jpg" alt="Image 20" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/420545481_859242302881198_3655495282137880639_n.jpg')">
+          <img src="uploads/port/420545481_859242302881198_3655495282137880639_n.jpg" alt="Image 21" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/420280598_852586950213400_3443842375319031191_n.jpg')">
+          <img src="uploads/port/420280598_852586950213400_3443842375319031191_n.jpg" alt="Image 22" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/9.jpg')">
+          <img src="uploads/port/9.jpg" alt="Image 23" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/419324721_852670856871676_1112492233214149169_n.jpg')">
+          <img src="uploads/port/419324721_852670856871676_1112492233214149169_n.jpg" alt="Image 24" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/441157335_884840446988050_2877229422607293873_n.jpg')">
+          <img src="uploads/port/441157335_884840446988050_2877229422607293873_n.jpg" alt="Image 25" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/10.jpg')">
+          <img src="uploads/port/10.jpg" alt="Image 26" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/445066732_891551996316895_3049809053079942686_n.jpg')">
+          <img src="uploads/port/445066732_891551996316895_3049809053079942686_n.jpg" alt="Image 27" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/418986555_852587220213373_2063235486712997972_n.jpg')">
+          <img src="uploads/port/418986555_852587220213373_2063235486712997972_n.jpg" alt="Image 28" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/420193093_852587253546703_6700151286301449833_n.jpg')">
+          <img src="uploads/port/420193093_852587253546703_6700151286301449833_n.jpg" alt="Image 29" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/11.jpg')">
+          <img src="uploads/port/11.jpg" alt="Image 30" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/420191796_850301703775258_1185317151026266856_n.jpg')">
+          <img src="uploads/port/420191796_850301703775258_1185317151026266856_n.jpg" alt="Image 31" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/418986831_852587036880058_8705871273010593305_n.jpg')">
+          <img src="uploads/port/418986831_852587036880058_8705871273010593305_n.jpg" alt="Image 32" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/441966501_891551762983585_4202346488346980194_n.jpg')">
+          <img src="uploads/port/441966501_891551762983585_4202346488346980194_n.jpg" alt="Image 33" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/12.jpg')">
+          <img src="uploads/port/12.jpg" alt="Image 34" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/420201888_850301820441913_7957788413658432208_n.jpg')">
+          <img src="uploads/port/420201888_850301820441913_7957788413658432208_n.jpg" alt="Image 35" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/450458048_922989013173193_2944533114325457177_n.jpg')">
+          <img src="uploads/port/450458048_922989013173193_2944533114325457177_n.jpg" alt="Image 36" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/13.jpg')">
+          <img src="uploads/port/13.jpg" alt="Image 37" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/418981908_850301760441919_8199620442489643009_n.jpg')">
+          <img src="uploads/port/418981908_850301760441919_8199620442489643009_n.jpg" alt="Image 38" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/436300388_884843863654375_1408811771875856056_n.jpg')">
+          <img src="uploads/port/436300388_884843863654375_1408811771875856056_n.jpg" alt="Image 39" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/14.jpg')">
+          <img src="uploads/port/14.jpg" alt="Image 40" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/441197445_884843780321050_3630138417296394801_n.jpg')">
+          <img src="uploads/port/441197445_884843780321050_3630138417296394801_n.jpg" alt="Image 41" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/450254108_922363109902450_3475024918975155640_n.jpg')">
+          <img src="uploads/port/450254108_922363109902450_3475024918975155640_n.jpg" alt="Image 42" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/15.jpg')">
+          <img src="uploads/port/15.jpg" alt="Image 43" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/441963651_891551899650238_5325626000319308485_n.jpg')">
+          <img src="uploads/port/441963651_891551899650238_5325626000319308485_n.jpg" alt="Image 44" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/448950084_910194734452621_6565037790941088887_n.jpg')">
+          <img src="uploads/port/448950084_910194734452621_6565037790941088887_n.jpg" alt="Image 45" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/441157335_884840446988050_2877229422607293873_n.jpg')">
+          <img src="uploads/port/441157335_884840446988050_2877229422607293873_n.jpg" alt="Image 46" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/448891884_910194714452623_2827242982687188198_n.jpg')">
+          <img src="uploads/port/448891884_910194714452623_2827242982687188198_n.jpg" alt="Image 47" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/10.jpg')">
+          <img src="uploads/port/10.jpg" alt="Image 48" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/420545481_859242302881198_3655495282137880639_n.jpg')">
+          <img src="uploads/port/420545481_859242302881198_3655495282137880639_n.jpg" alt="Image 49" />
+      </div>
+      <div class="photo" onclick="openModal('uploads/port/12.jpg')">
+          <img src="uploads/port/12.jpg" alt="Image 50" />
+      </div>
+      
+        <!-- Add more photos to fill 3x10 grid -->
+    </section>
+
+    <div id="modal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <div class="nav">
+        <button onclick="loadMore()">Next Page</button>
+    </div>
+
+    <script>
+        function openModal(imageSrc) {
+            var modal = document.getElementById('modal');
+            var modalImage = document.getElementById('modalImage');
+            modal.style.display = "block";
+            modalImage.src = imageSrc;
+        }
+
+        function closeModal() {
+            var modal = document.getElementById('modal');
+            modal.style.display = "none";
+        }
+
+        function loadMore() {
+            alert('Loading more photos...');
+        }
+    </script>
+</body>
+</html>
